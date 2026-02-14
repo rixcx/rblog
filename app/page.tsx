@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getAllArticlesMeta }  from "@/libs/remark";
 
-export default function Home() {
+const articlesMeta = await getAllArticlesMeta();
+
+export default function Index() {
   return (
     <div className="">
       <main className="">
@@ -9,12 +12,16 @@ export default function Home() {
           r.blog
         </h1>
         <ul className="border-t border-(--text-primary) mt-4">
-          <li>
-            <Link href={`/pages`} className="block border-b border-(--text-primary) py-4">
-              <h2>Title</h2>
-              <data>2026.01.01</data>
+        
+        {articlesMeta.map((article) => (
+          <li key={article.slug}>
+            <Link href={`/articles/${article.slug}`} className="block border-b border-(--text-primary) py-4">
+              <h2>{article.title}</h2>
+              <data>{article.date}</data>
             </Link>
           </li>
+        ))}
+
         </ul>
       </main>
     </div>
