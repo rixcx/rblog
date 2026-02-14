@@ -2,6 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkhtml from "remark-html";
+import remarkGfm from "remark-gfm";
 
 export type ArticleMeta = {
   slug: string;
@@ -38,6 +39,7 @@ export async function getArticleContent(slug: string): Promise<ArticleContent> {
   const { data, content } = matter(fileContents);
 
   const convertedContent = await remark()
+    .use(remarkGfm)
     .use(remarkhtml)
     .process(content);
 
