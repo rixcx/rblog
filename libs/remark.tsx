@@ -1,7 +1,10 @@
+import "server-only";
+
 import React from "react";
 import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
@@ -17,25 +20,18 @@ export type ArticleContent = ArticleMeta & {
   content: React.ReactNode;
 };
 
-export function getAllArticlesMeta(): ArticleMeta[] {
-  const dir = "app/articles/mds";
-  const files = fs.readdirSync(dir);
+// 定数とヘルパー関数
+const ARTICLES_DIR = path.join(process.cwd(), "app", "articles", "mds");
 
-  return files.map((file) => {
-    const slug = file.replace(".md", "");
-    const fullPath = `${dir}/${file}`;
-    const fileContent = fs.readFileSync(fullPath, "utf8");
-    
-    // frontmatterを解析
-    const { data } = matter(fileContent);
-
-    return {
-      slug,
-      ...data,
-    } as ArticleMeta;
-  });
+function getMarkdownFilePath(slug: string): string {
+  return path.join(ARTICLES_DIR, `${slug}.md`);
 }
 
+function readAndParseMarkdownFile(slug: string) {
+  const fullPath = getMarkdownFilePath(slug);
+  const fileContent = fs.readFileSync(fullPath, "utf8");
+  return matter(fileContent);
+}
 
 async function markdownToReact(content: string) {
   const processed = await remark()
@@ -49,8 +45,10 @@ async function markdownToReact(content: string) {
             src={src}
             alt={alt}
             width={800}
-            height={400}
-            className="rounded-lg my-6"
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+            className="rounded-lg"
           />
         ),
       },
@@ -60,18 +58,25 @@ async function markdownToReact(content: string) {
   return processed.result;
 }
 
+export function getAllArticlesMeta(): ArticleMeta[] {
+  const files = fs.readdirSync(ARTICLES_DIR);
 
+  return files
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => {
+      const slug = file.replace(".md", "");
+      const { data } = readAndParseMarkdownFile(slug);
 
+      return {
+        slug,
+        ...data,
+      } as ArticleMeta;
+    });
+    
+}
 
 export async function getArticleContent(slug: string): Promise<ArticleContent> {
-  const dir = "app/articles/mds";
-  const fullPath = `${dir}/${slug}.md`;
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-
-  // frontmatterとcontentを解析
-  const { data, content } = matter(fileContents);
-
-  // contentのMarkdownをReactコンポーネントに変換
+  const { data, content } = readAndParseMarkdownFile(slug);
   const reactContent = await markdownToReact(content);
 
   return {
