@@ -8,7 +8,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <div className="prose lg:prose-xl mx-auto py-8">
       <h1>{article.title}</h1>
       <p className="">{article.date}</p>
-      <div dangerouslySetInnerHTML={{ __html: article.contentHtml }} />
+      <div>{article.content}</div>
     </div>
   );
 }

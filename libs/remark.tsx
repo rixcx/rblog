@@ -1,8 +1,12 @@
+import React from "react";
+import Image from "next/image";
+import * as runtime from "react/jsx-runtime";
 import fs from "fs";
 import matter from "gray-matter";
 import { remark } from "remark";
-import remarkhtml from "remark-html";
 import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+import rehypeReact from "rehype-react";
 
 export type ArticleMeta = {
   slug: string;
@@ -10,43 +14,69 @@ export type ArticleMeta = {
   date: string;
 };
 export type ArticleContent = ArticleMeta & {
-  contentHtml: string;
+  content: React.ReactNode;
 };
 
 export function getAllArticlesMeta(): ArticleMeta[] {
   const dir = "app/articles/mds";
   const files = fs.readdirSync(dir);
 
-  return files
-    .map((file) => {
-      const slug = file.replace(".md", "");
-      const fullPath = `${dir}/${file}`;
-      const fileContents = fs.readFileSync(fullPath, "utf8");
+  return files.map((file) => {
+    const slug = file.replace(".md", "");
+    const fullPath = `${dir}/${file}`;
+    const fileContent = fs.readFileSync(fullPath, "utf8");
+    
+    // frontmatterを解析
+    const { data } = matter(fileContent);
 
-      const { data } = matter(fileContents);
-
-      return {
-        slug,
-        ...data,
-      } as ArticleMeta;
-    });
+    return {
+      slug,
+      ...data,
+    } as ArticleMeta;
+  });
 }
+
+
+async function markdownToReact(content: string) {
+  const processed = await remark()
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeReact, {
+      ...runtime,
+      components: {
+        img: ({ src = "", alt = "" }) => (
+          <Image
+            src={src}
+            alt={alt}
+            width={800}
+            height={400}
+            className="rounded-lg my-6"
+          />
+        ),
+      },
+    })
+    .process(content);
+
+  return processed.result;
+}
+
+
 
 
 export async function getArticleContent(slug: string): Promise<ArticleContent> {
-  const fullPath = `app/articles/mds/${slug}.md`;
+  const dir = "app/articles/mds";
+  const fullPath = `${dir}/${slug}.md`;
   const fileContents = fs.readFileSync(fullPath, "utf8");
+
+  // frontmatterとcontentを解析
   const { data, content } = matter(fileContents);
 
-  const convertedContent = await remark()
-    .use(remarkGfm)
-    .use(remarkhtml)
-    .process(content);
-
-  const contentHtml = convertedContent.toString();
+  // contentのMarkdownをReactコンポーネントに変換
+  const reactContent = await markdownToReact(content);
 
   return {
     ...data,
-    contentHtml,
+    content: reactContent,
   } as ArticleContent;
 }
+
