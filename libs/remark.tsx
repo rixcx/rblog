@@ -1,7 +1,6 @@
 import "server-only";
 
 import React from "react";
-import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
 import fs from "fs";
 import path from "path";
@@ -10,6 +9,7 @@ import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeReact from "rehype-react";
+import * as MDX from "@/components/mdx/Typography";
 
 export type ArticleMeta = {
   slug: string;
@@ -40,17 +40,21 @@ async function markdownToReact(content: string) {
     .use(rehypeReact, {
       ...runtime,
       components: {
-        img: ({ src = "", alt = "" }) => (
-          <Image
-            src={src}
-            alt={alt}
-            width={800}
-            height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "auto" }}
-            className="rounded-lg"
-          />
-        ),
+        h1: MDX.H1,
+        h2: MDX.H2,
+        p: MDX.P,
+        a: MDX.A,
+        ul: MDX.Ul,
+        ol: MDX.Ol,
+        li: MDX.Li,
+        code: MDX.Code,
+        pre: MDX.Pre,
+        blockquote: MDX.Blockquote,
+        table: MDX.Table,
+        th: MDX.Th,
+        td: MDX.Td,
+        hr: MDX.Hr,
+        img: MDX.Img,
       },
     })
     .process(content);

@@ -58,7 +58,7 @@ date: "2026-01-01"
 
 ### 画像
 
-![サンプル画像](/images/sample.png)
+![サンプル画像](/images/next.svg)
 
 ---
 
