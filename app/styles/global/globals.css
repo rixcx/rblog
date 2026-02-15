@@ -1,33 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: var(--color-primary-white);
   --foreground: #171717;
-  --text-primary: #0d0d0d;
+  --text-primary: var(--color-font-black)
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --text-primary: var(--text-primary);
-}
-
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
-    --text-primary: #ededed;
+    --foreground: var(--color-primary-white);
+    --text-primary: var(--color-primary-white);
   }
+} */
+
+@theme {
+  --color-primary-beige: #F6EBDA;
+  --color-primary-red: #E74D4D; 
+  --color-primary-white: #FBFBFB;
+  --color-font-black: #19262E;
 }
 
 body {
-  background: var(--background);
   color: var(--text-primary);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .font-playfair {
   font-family: var(--font-playfair-display);
+  font-variant-numeric: lining-nums;
+  transform: scaleY(0.8);
+  display: inline-block;
+  font-weight: 500;
+}
+
+/* 下線アニメーション */
+@layer components {
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute left-0 -bottom-[-0.125rem] h-[2px] w-full
+           origin-left scale-x-0
+           bg-current
+           transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
 }

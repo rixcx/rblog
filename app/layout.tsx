@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   description: "",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,13 +32,14 @@ export default function RootLayout({
   return (
     <html lang="js">
       <body
-        className={`${ibmPlexSansJP.className} ${playfairDisplay.variable} antialiased`}
+        className=
+        {`${ibmPlexSansJP.className} ${playfairDisplay.variable} antialiased min-h-screen bg-[url(/images/global/bg_pattern.png)] bg-top bg-primary-beige color-primary-black`}
       >
-      <div className="min-h-screen bg-teal-100">
-        <div className="">
-          {children}
+        <div className="max-w-283.75 mx-auto mt-21 p-6 pt-28 pb-16 bg-primary-red">
+          <main className="max-w-230 mx-auto py-30 px-15 bg-primary-white rounded-2xl">
+            {children}
+          </main>
         </div>
-      </div>
       </body>
     </html>
   );
