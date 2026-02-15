@@ -17,7 +17,7 @@ export default function Index() {
           <li key={article.slug}>
             <Link href={`/articles/${article.slug}`} className="block border-b border-(--text-primary) py-4">
               <h2>{article.title}</h2>
-              <data>{article.date}</data>
+              <data className="font-playfair">{article.date}</data>
             </Link>
           </li>
         ))}

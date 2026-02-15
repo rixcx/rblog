@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans_JP, Playfair_Display } from "next/font/google";
 import "./styles/global/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+export const ibmPlexSansJP = IBM_Plex_Sans_JP({
+  variable: "--font-ibm-plex-sans-jp",
   subsets: ["latin"],
+  weight: ["400", "700"],
+  preload: false,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+export const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
   subsets: ["latin"],
 });
 
@@ -25,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="js">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ibmPlexSansJP.className} ${playfairDisplay.variable} antialiased`}
       >
       <div className="min-h-screen bg-teal-100">
         <div className="">
