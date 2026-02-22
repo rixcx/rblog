@@ -1,48 +1,47 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary-beige: #F6EBDA;
+  --color-primary-red: #E74D4D;
+  --color-primary-white: #FBFBFB;
+  --color-font-black: #19262E;
+}
+
 :root {
   --background: var(--color-primary-white);
-  --foreground: #171717;
   --text-primary: var(--color-font-black)
 }
 /* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: var(--color-primary-white);
     --text-primary: var(--color-primary-white);
   }
 } */
-
-@theme {
-  --color-primary-beige: #F6EBDA;
-  --color-primary-red: #E74D4D; 
-  --color-primary-white: #FBFBFB;
-  --color-font-black: #19262E;
-}
 
 body {
   color: var(--text-primary);
 }
 
-/* font */
-.font-playfair {
-  font-family: var(--font-playfair-display);
-  font-variant-numeric: lining-nums;
-  font-weight: 700;
-}
-
 @layer components {
-  /* 下線アニメーション */
+
+  /* font */
+  .font-playfair {
+    font-family: var(--font-playfair-display);
+    font-variant-numeric: lining-nums;
+    font-weight: 700;
+  }
+
+  /* border animation */
   .link-underline {
     @apply relative inline-block;
   }
 
   .link-underline::after {
     content: "";
-    @apply absolute left-0 -bottom-[-0.125rem] h-[2px] w-full
-           origin-left scale-x-0
-           bg-current
-           transition-transform duration-300;
+    @apply absolute left-0 -bottom-0.5 h-0.5 w-full
+    origin-left scale-x-0
+    bg-current
+    transition-transform duration-300;
   }
   /* 
   .link-underline:hover::after {
@@ -73,15 +72,86 @@ body {
     background-image: url('/images/global/deco_flower.png');
   }
   .deco::after {
-    @apply -right-12.75 top-96 w-[115px] h-[211px];
+    @apply -right-12.75 top-96 w-28.75 h-52.75;
     background-image: url('/images/global/deco_star.png');
   }
   
-  /* 角丸 */
+  /* border deco */
+  .border-deco-b {
+    @apply relative;
+  }
+  .border-deco-b::after {
+    content: '';
+    background-image: radial-gradient( circle, var(--color-primary-red) 2px, transparent 2px);
+    @apply absolute
+    left-0 bottom-0 w-full h-0.5
+    bg-size-[7px_2px]
+    bg-repeat-x;
+  }
+  
+  .border-deco-x {
+    @apply relative;
+  }
+  .border-deco-x::before,
+  .border-deco-x::after {
+    content: '';
+    background-image: radial-gradient( circle, var(--color-primary-red) 2px, transparent 2px);
+    @apply absolute;
+  }
+  /* left */
+  .border-deco-x::before {
+    @apply left-0 top-0 h-full w-0.5
+    bg-size-[2px_7px]
+    bg-repeat-y;
+  }
+  /* right */
+  .border-deco-x::after {
+    @apply right-0 top-0 h-full w-0.5
+    bg-size-[2px_7px]
+    bg-repeat-y;
+  }
+
+  /* joint deco */
+  .border-deco-joint-l {
+    @apply relative block z-10 w-full;
+  }
+  .border-deco-joint-l::after,
+  .border-deco-joint-l::before {
+    content: '';
+    @apply absolute
+    bg-primary-red;
+  }
+  .border-deco-joint-l::after {
+    @apply left-0 bottom-0
+    w-2.5 h-0.5
+  }
+  .border-deco-joint-l::before {
+    @apply left-0 top-1/2 -translate-y-1/2
+    w-0.5 h-5
+  }
+
+  .border-deco-joint-r {
+    @apply relative block z-10 w-full;
+  }
+  .border-deco-joint-r::after,
+  .border-deco-joint-r::before {
+    content: '';
+    @apply absolute
+    bg-primary-red;
+  }
+  .border-deco-joint-r::after {
+    @apply right-0 bottom-0
+    w-2.5 h-0.5
+  }
+  .border-deco-joint-r::before {
+    @apply right-0 top-1/2 -translate-y-1/2
+    w-0.5 h-5
+  }
+
+  /* round corner */
   .footer-corner {
     @apply relative pl-6;
   }
-  
   .footer-corner::before,
   .footer-corner::after {
     content: '';
