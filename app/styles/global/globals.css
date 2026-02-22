@@ -24,16 +24,15 @@ body {
   color: var(--text-primary);
 }
 
+/* font */
 .font-playfair {
   font-family: var(--font-playfair-display);
   font-variant-numeric: lining-nums;
-  transform: scaleY(0.8);
-  display: inline-block;
-  font-weight: 500;
+  font-weight: 700;
 }
 
-/* 下線アニメーション */
 @layer components {
+  /* 下線アニメーション */
   .link-underline {
     @apply relative inline-block;
   }
@@ -45,8 +44,56 @@ body {
            bg-current
            transition-transform duration-300;
   }
-
+  /* 
   .link-underline:hover::after {
     @apply scale-x-100;
+  }
+  */
+
+  .link-underline span,
+  .link-underline + data {
+    @apply transition duration-300;
+  }
+
+  .link-underline:hover span,
+  .link-underline:hover + data {
+    @apply blur-[1px];
+  }
+  
+  /* deco */
+  .deco::before,
+  .deco::after {
+    content: '';
+    @apply absolute z-20
+    -translate-y-1/2
+    bg-no-repeat bg-contain;
+  }
+  .deco::before {
+    @apply -left-18 top-115 w-25.25 h-25.25;
+    background-image: url('/images/global/deco_flower.png');
+  }
+  .deco::after {
+    @apply -right-12.75 top-96 sw-[115px] h-[211px];
+    background-image: url('/images/global/deco_star.png');
+  }
+  
+  /* 角丸 */
+  .footer-corner {
+    @apply relative pl-6;
+  }
+  
+  .footer-corner::before,
+  .footer-corner::after {
+    content: '';
+    @apply absolute w-10 h-10 
+    -translate-y-1/2
+    bg-no-repeat bg-contain bg-primary-red;
+    background-image: url('/images/global/bg_roundedcorner.svg');
+  }
+  .footer-corner::before {
+    @apply -left-4 top-1/2
+  }
+  .footer-corner::after {
+    @apply right-0 -top-1/2
   }
 }
