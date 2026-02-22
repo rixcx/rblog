@@ -73,7 +73,7 @@ body {
     background-image: url('/images/global/deco_flower.png');
   }
   .deco::after {
-    @apply -right-12.75 top-96 sw-[115px] h-[211px];
+    @apply -right-12.75 top-96 w-[115px] h-[211px];
     background-image: url('/images/global/deco_star.png');
   }
   
