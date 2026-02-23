@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans_JP, Playfair_Display } from "next/font/google";
-import "./styles/global/globals.css?${Date.now()}";
+import "@/app/styles/global/globals.css?${Date.now()}";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 

@@ -42,6 +42,9 @@ async function markdownToReact(content: string) {
       components: {
         h1: MDX.H1,
         h2: MDX.H2,
+        h3: MDX.H3,
+        h4: MDX.H4,
+        h5: MDX.H5,
         p: MDX.P,
         a: MDX.A,
         ul: MDX.Ul,

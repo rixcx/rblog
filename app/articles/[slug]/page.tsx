@@ -1,5 +1,6 @@
 import { getArticleContent } from "@/libs/remark";
 import { formatDate } from "@/utils/date";
+import "@/app/styles/mdx.css?${Date.now()}";
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -16,8 +17,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <span className="border-deco-joint-r"></span>
           <span className="border-deco-joint-l"></span>
         </header>
-        <div className="pt-10 px-6.5 pb-14">
-          {article.content}
+        <div className="pt-15 px-6.5 pb-14">
+          <div className="markdown-body">
+            {article.content}
+          </div>
         </div>
       </div>
     </article>
