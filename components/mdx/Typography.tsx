@@ -99,7 +99,7 @@ export function Blockquote({ children }: { children: React.ReactNode }) {
 
 export function Table({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-auto my-8">
+    <div>
       <table>
         {children}
       </table>
