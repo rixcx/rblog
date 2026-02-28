@@ -79,15 +79,15 @@ export function Li({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Code({ children }: { children: React.ReactNode }) {
+export function Code({ children, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <code>{children}</code>
+    <code {...props}>{children}</code>
   );
 }
 
-export function Pre({ children }: { children: React.ReactNode }) {
+export function Pre({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) {
   return (
-    <pre>{children}</pre>
+    <pre {...props}>{children}</pre>
   );
 }
 

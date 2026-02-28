@@ -7,7 +7,9 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 import remarkRehype from "remark-rehype";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeReact from "rehype-react";
 import * as MDX from "@/components/mdx/Typography";
 
@@ -36,7 +38,11 @@ function readAndParseMarkdownFile(slug: string) {
 async function markdownToReact(content: string) {
   const processed = await remark()
     .use(remarkGfm)
+    .use(remarkBreaks)
     .use(remarkRehype)
+    .use(rehypePrettyCode, {
+      theme: "everforest-dark",
+    })
     .use(rehypeReact, {
       ...runtime,
       components: {
