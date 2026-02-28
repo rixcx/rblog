@@ -3,6 +3,7 @@ import { IBM_Plex_Sans_JP, Playfair_Display } from "next/font/google";
 import "@/app/styles/global/globals.css?${Date.now()}";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const ibmPlexSansJP = IBM_Plex_Sans_JP({
   variable: "--font-ibm-plex-sans-jp",
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="js">
       <body className={`${ibmPlexSansJP.className} ${playfairDisplay.variable} antialiased min-h-screen color-primary-black bg-primary-beige`}>
+        <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-[url(/images/global/bg_pattern.png)] bg-top">
           <div className="relative w-full max-w-283.75 mx-auto my-10.5 p-6 pt-28 pb-16 bg-primary-red">
             <Header/>
