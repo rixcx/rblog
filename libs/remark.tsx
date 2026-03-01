@@ -22,11 +22,13 @@ export type ArticleContent = ArticleMeta & {
   content: React.ReactNode;
 };
 
-// 定数とヘルパー関数
 const ARTICLES_DIR = path.join(process.cwd(), "app", "articles", "mds");
+const DATE_PREFIX_REGEX = /^\d{2}-\d{2}-\d{2}_/;
 
 function getMarkdownFilePath(slug: string): string {
-  return path.join(ARTICLES_DIR, `${slug}.md`);
+  const files = fs.readdirSync(ARTICLES_DIR);
+  const file = files.find((f) => f.replace(DATE_PREFIX_REGEX, "") === `${slug}.md`);
+  return path.join(ARTICLES_DIR, file || "");
 }
 
 function readAndParseMarkdownFile(slug: string) {
@@ -72,29 +74,20 @@ async function markdownToReact(content: string) {
 }
 
 export function getAllArticlesMeta(): ArticleMeta[] {
-  const files = fs.readdirSync(ARTICLES_DIR);
-
-  return files
+  return fs.readdirSync(ARTICLES_DIR)
     .filter((file) => file.endsWith(".md"))
+    .sort()
+    .reverse()
     .map((file) => {
-      const slug = file.replace(".md", "");
+      const slug = file.replace(".md", "").replace(DATE_PREFIX_REGEX, "");
       const { data } = readAndParseMarkdownFile(slug);
-
-      return {
-        slug,
-        ...data,
-      } as ArticleMeta;
+      return { slug, ...data } as ArticleMeta;
     });
-    
 }
 
 export async function getArticleContent(slug: string): Promise<ArticleContent> {
   const { data, content } = readAndParseMarkdownFile(slug);
   const reactContent = await markdownToReact(content);
 
-  return {
-    ...data,
-    content: reactContent,
-  } as ArticleContent;
+  return { ...data, content: reactContent } as ArticleContent;
 }
-

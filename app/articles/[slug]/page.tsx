@@ -1,6 +1,13 @@
-import { getArticleContent } from "@/libs/remark";
+import { getArticleContent, getAllArticlesMeta } from "@/libs/remark";
 import { formatDate } from "@/utils/date";
 import "@/app/styles/mdx.css?${Date.now()}";
+
+export async function generateStaticParams() {
+  const articles = getAllArticlesMeta();
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

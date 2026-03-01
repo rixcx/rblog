@@ -12,7 +12,7 @@ const client = createClient({
 const nodeHtmlMarkdown = new NodeHtmlMarkdown();
 
 async function main() {
-  const data = await client.get({ endpoint: 'blog' });
+  const data = await client.get({ endpoint: 'blog',queries: { limit: 20 }});
 
   const dir = path.join(process.cwd(), 'microcms');
   await fs.mkdir(dir, { recursive: true });
