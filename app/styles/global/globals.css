@@ -20,6 +20,11 @@
 
 body {
   color: var(--text-primary);
+  font-family:
+    var(--font-ibm-plex-sans-jp),
+    /* var(--font-ubuntu), */
+    sans-serif;
+    font-weight: 500;
 }
 
 @layer components {
