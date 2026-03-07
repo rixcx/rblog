@@ -12,6 +12,31 @@ import remarkRehype from "remark-rehype";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeReact from "rehype-react";
 import * as MDX from "@/components/mdx/Typography";
+import Mermaid from "@/components/mdx/Mermaid";
+
+// Mermaidブロックを識別・変換し、rehype-react検知、Mermaidコンポーネントで表示する
+const rehypeMermaid = () => (tree: any) => {
+  const visit = (node: any) => {
+    if (node.type === "element" && node.tagName === "pre") {
+      const codeNode = node.children?.[0];
+      if (codeNode?.tagName === "code") {
+        const className = codeNode.properties?.className || [];
+        // class="language-mermaid" が付いている code ブロックのみ対象
+        if (className.includes("language-mermaid")) {
+          // pre > code を div[data-mermaid] に変換
+          node.tagName = "div";
+          node.properties = { "data-mermaid": "true" };
+          // 生のテキストを取得
+          const rawCode = codeNode.children?.[0]?.value || "";
+          node.children = [{ type: "text", value: rawCode }];
+          return;
+        }
+      }
+    }
+    node.children?.forEach(visit);
+  };
+  visit(tree);
+};
 
 export type ArticleMeta = {
   slug: string;
@@ -42,6 +67,7 @@ async function markdownToReact(content: string) {
     .use(remarkGfm)
     .use(remarkBreaks)
     .use(remarkRehype)
+    .use(rehypeMermaid)
     .use(rehypePrettyCode, {
       theme: "everforest-dark",
     })
@@ -66,6 +92,13 @@ async function markdownToReact(content: string) {
         td: MDX.Td,
         hr: MDX.Hr,
         img: MDX.Img,
+        // div[data-mermaid] があれば Mermaid コンポーネントを使う
+        div: ({ "data-mermaid": isMermaid, children, ...props }: any) => {
+          if (isMermaid) {
+            return <Mermaid code={String(children)} />;
+          }
+          return <div {...props}>{children}</div>;
+        },
       },
     })
     .process(content);
