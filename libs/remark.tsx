@@ -96,7 +96,7 @@ function generateMermaidSvg(code: string, articleFolderName: string): string {
 /**
  * Custom plugin to converts Mermaid code blocks into SVG.
  */
-const rehypeMermaid = (articleFolderName: string) => (tree: any) => {
+const mermaidBlockToSvg = (articleFolderName: string) => (tree: any) => {
   const visit = (node: any) => {
     // Detect code blocks that <pre><code class="language-mermaid">...</code></pre>
     if (node.type === "element" && node.tagName === "pre") {
@@ -135,7 +135,7 @@ async function markdownToReact(content: string, articleFolderName: string) {
     .use(remarkGfm)    // Plugin for GitHub Flavored Markdown
     .use(remarkBreaks) // Plugin to treat line breaks as <br>
     .use(remarkRehype) // Plugin to convert markdown to HTML
-    .use(rehypeMermaid, articleFolderName) // Custom plugin to handle Mermaid diagrams
+    .use(mermaidBlockToSvg, articleFolderName) // Custom plugin to handle Mermaid diagrams
     .use(rehypePrettyCode,  // Plugin for syntax highlighting
       {
         theme: "everforest-dark",
