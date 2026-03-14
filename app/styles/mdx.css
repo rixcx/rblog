@@ -17,26 +17,26 @@
   }
 
   .markdown-body h1 {
-    @apply text-3xl font-bold mt-[1.8em] mb-[0.5em];
+    @apply text-3xl font-bold mt-[2.2em] mb-[0.5em];
   }
   .markdown-body > h1:first-child {
     @apply mt-0
   }
 
   .markdown-body h2 {
-    @apply text-2xl font-bold mt-[1.6em] mb-[0.4em];
+    @apply text-2xl font-bold mt-[2em] mb-[0.4em];
   }
 
   .markdown-body h3 {
-    @apply text-xl font-bold mt-[1.4em] mb-[0.3em];
+    @apply text-xl font-bold mt-[1.8em] mb-[0.3em];
   }
 
   .markdown-body h4 {
-    @apply text-lg font-bold mt-[1.2em] mb-[0.2em];
+    @apply text-lg font-bold mt-[1.4em] mb-[0.2em];
   }
 
   .markdown-body h5 {
-    @apply text-base font-bold mt-[1em];
+    @apply text-base font-bold mt-[1.2em] mb-[0.2em];
   } 
 
   .markdown-body a {
