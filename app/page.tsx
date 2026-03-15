@@ -12,13 +12,13 @@ export default function Index() {
       {articlesMeta.map((article) => (
         <li key={article.slug}>
           <Link href={`/articles/${article.slug}`} className="inline-block">
-            <div className="py-4 flex flex-col">
-              <h2 className="text-[28px] font-bold link-underline inline-block">
+            <div className="py-2.5 md:py-4 flex flex-col">
+              <h2 className="text-[22px] md:text-[28px] leading-6 md:leading-8 font-bold link-underline inline-block">
                 <span>
                   {article.title}
                 </span>
               </h2>
-              <time className="inline-block font-playfair text-[0.9rem] transform scale-y-80">{formatDate(article.date)}</time>
+              <time className="inline-block font-playfair text-[0.8rem] md:text-[0.9rem] transform scale-y-80">{formatDate(article.date)}</time>
             </div>
           </Link>
         </li>

@@ -2,7 +2,7 @@
 
 @layer components {
   .markdown-body {
-    @apply text-[15px] leading-[25px] tracking-[-0.01em];
+    @apply text-[14px] md:text-[15px] leading-[22px] md:leading-[25px] tracking-[-0.01em];
   }
 
   .markdown-body p {
@@ -17,38 +17,38 @@
   }
 
   .markdown-body h1 {
-    @apply text-3xl font-bold mt-[2.2em] mb-[0.5em];
+    @apply text-2xl md:text-3xl font-bold mt-[2.2em] mb-[0.5em];
   }
   .markdown-body > h1:first-child {
     @apply mt-0
   }
 
   .markdown-body h2 {
-    @apply text-2xl font-bold mt-[2em] mb-[0.4em];
+    @apply text-xl md:text-2xl font-bold mt-[2em] mb-[0.4em];
   }
 
   .markdown-body h3 {
-    @apply text-xl font-bold mt-[1.8em] mb-[0.3em];
+    @apply text-lg md:text-xl font-bold mt-[1.8em] mb-[0.3em];
   }
 
   .markdown-body h4 {
-    @apply text-lg font-bold mt-[1.4em] mb-[0.2em];
+    @apply text-base md:text-lg font-bold mt-[1.4em] mb-[0.2em];
   }
 
   .markdown-body h5 {
-    @apply text-base font-bold mt-[1.2em] mb-[0.2em];
+    @apply text-sm md:text-base font-bold mt-[1.2em] mb-[0.2em];
   } 
 
   .markdown-body a {
-    @apply text-(--color-primary-red) underline underline-offset-4 hover:opacity-70 transition;
+    @apply text-(--color-primary-red) underline underline-offset-4 hover:opacity-70 transition break-all max-w-full;
   }
   
   .markdown-body ul {
-    @apply list-disc ml-6 my-2 space-y-2;
+    @apply list-disc ml-4 md:ml-6 my-2 md:my-2 space-y-1 md:space-y-2;
   }
 
   .markdown-body ol {
-    @apply list-decimal ml-6 my-2 space-y-2;
+    @apply list-decimal ml-4 md:ml-6 my-2 md:my-2 space-y-1 md:space-y-2;
   }
 
   .markdown-body li {
@@ -66,10 +66,10 @@
   }
 
   .markdown-body h6 {
-    @apply text-[13px] text-[#aaa] bg-[#4e5154] px-3 py-0.5 mt-0.5 rounded-tr-lg rounded-tl-lg inline-block font-mono;
+    @apply text-[11px] md:text-[13px] text-[#aaa] bg-[#4e5154] px-3 py-0.5 mt-0.5 rounded-tr-lg rounded-tl-lg inline-block font-mono break-all max-w-[95%];
   } 
   .markdown-body pre {
-    @apply text-[13px] bg-[#3A3A3A] mb-4 px-0 py-5 rounded-lg overflow-x-auto text-sm font-mono;
+    @apply text-[11px] md:text-[13px] bg-[#3A3A3A] mb-4 px-0 py-4 md:py-5 rounded-lg overflow-x-auto text-sm font-mono;
   }
   .markdown-body h6 + figure pre {
     @apply rounded-tl-none;
@@ -78,11 +78,11 @@
     @apply grid min-w-full;
   }
   .markdown-body pre [data-line] {
-    @apply px-5 min-h-[1.5em];
+    @apply px-4 md:px-5 min-h-[1.5em];
   }
 
   .markdown-body blockquote {
-    @apply relative my-2 pl-[28px] py-4 rounded-xl text-[rgb(25_38_46/0.6)] italic;
+    @apply relative my-1 md:my-2 pl-[22px] md:pl-[28px] py-3 md:py-4 rounded-xl text-[rgb(25_38_46/0.6)] italic;
     z-index: 1;
   }
   .markdown-body blockquote::after {

@@ -55,12 +55,12 @@ body {
   */
 
   .link-underline span,
-  .link-underline + data {
+  .link-underline + time {
     @apply transition duration-300;
   }
 
   .link-underline:hover span,
-  .link-underline:hover + data {
+  .link-underline:hover + time {
     @apply blur-[1px];
   }
   
@@ -68,7 +68,10 @@ body {
   .deco::before,
   .deco::after {
     content: '';
-    @apply absolute z-20
+    @apply 
+    hidden
+    md:block
+    absolute z-20
     -translate-y-1/2
     bg-no-repeat bg-contain;
   }
