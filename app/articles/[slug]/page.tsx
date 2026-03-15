@@ -14,21 +14,22 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const article = await getArticleContent(slug);
 
   return (
-    <article className="">
+    <article>
       <div className="border-deco-x">
         <header className="border-deco-b">
           <div className="py-10 px-6.5">
             <h1 className="text-4xl font-bold mb-2">{article.title}</h1>
-            <data className="inline-block font-playfair text-md transform scale-y-80">{formatDate(article.date)}</data>
+            <time className="inline-block font-playfair text-md transform scale-y-80">{formatDate(article.date)}</time>
           </div>
           <span className="border-deco-joint-r"></span>
           <span className="border-deco-joint-l"></span>
         </header>
-        <div className="pt-15 px-6.5 pb-14">
+
+        <section className="pt-15 px-6.5 pb-14">
           <div className="markdown-body">
             {article.content}
           </div>
-        </div>
+        </section>
       </div>
     </article>
   );

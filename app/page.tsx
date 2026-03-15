@@ -18,7 +18,7 @@ export default function Index() {
                   {article.title}
                 </span>
               </h2>
-              <data className="inline-block font-playfair text-[0.9rem] transform scale-y-80">{formatDate(article.date)}</data>
+              <time className="inline-block font-playfair text-[0.9rem] transform scale-y-80">{formatDate(article.date)}</time>
             </div>
           </Link>
         </li>
