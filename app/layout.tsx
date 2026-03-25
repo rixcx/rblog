@@ -4,6 +4,7 @@ import "@/app/styles/global/globals.css?${Date.now()}";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export const ibmPlexSansJP = IBM_Plex_Sans_JP({
   variable: "--font-ibm-plex-sans-jp",
@@ -38,7 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="js">
+    <html lang="ja">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className={`${ibmPlexSansJP.variable} ${playfairDisplay.variable} antialiased min-h-screen color-primary-black bg-primary-beige`}>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-[url(/images/global/bg_pattern.png)] bg-top overflow-x-hidden">
