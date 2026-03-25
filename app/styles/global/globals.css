@@ -67,10 +67,9 @@ body {
   /* deco */
   .deco::before,
   .deco::after {
-    content: '';
     @apply 
-    hidden
-    md:block
+    content-none
+    md:content-['']
     absolute z-20
     -translate-y-1/2
     bg-no-repeat bg-contain;
