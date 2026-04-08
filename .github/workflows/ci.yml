@@ -1,0 +1,38 @@
+name: CI + Deploy
+
+# push時に実行
+on: [push]
+
+# ジョブ定義
+jobs:
+  my_first_job:
+    name: My first job
+    # ジョブの実行環境
+    runs-on: ubuntu-latest
+    
+    # stepsで一連のタスクを定義
+    steps:
+      # リポジトリチェックアウト
+      - uses: actions/checkout@v4
+
+      # Nodeセットアップ
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 簡単なログ出力
+      - name: Say Hello
+        run: echo "Hello World!"
+
+      # 簡単なJSコード実行
+      - name: Run simple JS
+        run: |
+          node -e "console.log('JS is working')"
+
+      # 環境情報確認
+      - name: Show environment
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files:"
+          ls -la

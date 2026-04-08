@@ -2,4 +2,5 @@
 
 ## todo
 - カテゴリ
-- ドメインとサーバー移管（SSG）、CI/CD
+- CSS設計変更
+- SSG化、CI/CD追加、ホスティングはVercelまま
