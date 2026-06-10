@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { getAllArticlesMeta }  from "@/libs/remark";
+import { getAllArticlesMeta } from "@/libs/remark";
 import { formatDate } from "@/utils/date";
 
 const articlesMeta = await getAllArticlesMeta();
