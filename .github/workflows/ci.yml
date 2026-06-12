@@ -5,8 +5,8 @@ on: [push]
 
 # ジョブ定義
 jobs:
-  Test_job:
-    name: Test Job
+  Test:
+    name: Test
     # ジョブの実行環境
     runs-on: ubuntu-latest
     
@@ -39,9 +39,9 @@ jobs:
           echo "Files:"
           ls -la
 
-  Typecheck_job:
-    name: Typecheck Job
-    needs: Test_job
+  Typecheck:
+    name: Typecheck
+    needs: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -59,9 +59,9 @@ jobs:
       - name: Run typecheck
         run: npm run typecheck
 
-  Lint_job:
-    name: Lint Job
-    needs: Test_job
+  Lint:
+    name: Lint
+    needs: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -78,11 +78,11 @@ jobs:
       - name: Run lint
         run: npm run lint
 
-  Build_job:
-    name: Build Job
+  Build:
+    name: Build
     needs:
-      - Typecheck_job
-      - Lint_job
+      - Typecheck
+      - Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -102,7 +102,7 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: Build_job
+    needs: Build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
