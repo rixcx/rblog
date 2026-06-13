@@ -7,6 +7,7 @@ import path from "path";
 
 import React from "react";
 import * as runtime from "react/jsx-runtime";
+import type { Root, RootContent } from "hast";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
@@ -84,10 +85,12 @@ function generateMermaidSvg(code: string, articleFolderName: string): string {
       stdio: "pipe",
     });
     return fs.readFileSync(svgPath, "utf8");
-  } catch (error: any) {
-    const stderr = error.stderr?.toString() || "";
-    console.error("Mermaid generation failed:", error.message, stderr);
-    return `<div class="error">Mermaid generation failed: ${stderr || error.message}</div>`;
+  } catch (error: unknown) {
+    const maybeError = error as { stderr?: { toString(): string }; message?: string };
+    const stderr = maybeError.stderr?.toString() || "";
+    const message = error instanceof Error ? error.message : maybeError.message || "Unknown error";
+    console.error("Mermaid generation failed:", message, stderr);
+    return `<div class="error">Mermaid generation failed: ${stderr || message}</div>`;
   } finally {
     if (fs.existsSync(tmpMmd)) fs.unlinkSync(tmpMmd);
   }
@@ -96,17 +99,24 @@ function generateMermaidSvg(code: string, articleFolderName: string): string {
 /**
  * Custom plugin to converts Mermaid code blocks into SVG.
  */
-const mermaidBlockToSvg = (articleFolderName: string) => (tree: any) => {
-  const visit = (node: any) => {
+type HastNode = Root | RootContent;
+
+const mermaidBlockToSvg = (articleFolderName: string) => (tree: Root) => {
+  const visit = (node: HastNode) => {
     // Detect code blocks that <pre><code class="language-mermaid">...</code></pre>
     if (node.type === "element" && node.tagName === "pre") {
       const codeNode = node.children?.[0];
-      if (codeNode?.tagName === "code") {
-        const className = codeNode.properties?.className || [];
+      if (codeNode?.type === "element" && codeNode.tagName === "code") {
+        const className = codeNode.properties.className;
+        const classList = Array.isArray(className)
+          ? className.map(String)
+          : typeof className === "string"
+            ? className.split(/\s+/)
+            : [];
         
         // Process only Mermaid code blocks
-        if (className.includes("language-mermaid")) {
-          const rawCode = codeNode.children?.[0]?.value || "";
+        if (classList.includes("language-mermaid")) {
+          const rawCode = codeNode.children[0]?.type === "text" ? codeNode.children[0].value : "";
           // Generate SVG from Mermaid code 
           const svgContent = generateMermaidSvg(rawCode, articleFolderName);
 
@@ -121,7 +131,9 @@ const mermaidBlockToSvg = (articleFolderName: string) => (tree: any) => {
         }
       }
     }
-    node.children?.forEach(visit);
+    if ("children" in node) {
+      node.children.forEach(visit);
+    }
   };
   visit(tree);
 };
@@ -163,12 +175,19 @@ async function markdownToReact(content: string, articleFolderName: string) {
           hr: MDX.Hr,
           img: MDX.Img,
           // If it's a Mermaid block that div[data-mermaid], render the SVG directly
-          div: ({ "data-mermaid": isMermaid, "data-svg": svgContent, ...props }: any) => {
+          div: ({
+            "data-mermaid": isMermaid,
+            "data-svg": svgContent,
+            ...props
+          }: React.ComponentPropsWithoutRef<"div"> & {
+            "data-mermaid"?: string;
+            "data-svg"?: string;
+          }) => {
             if (isMermaid) {
               return (
                 <div
                   className="mermaid-container"
-                  dangerouslySetInnerHTML={{ __html: svgContent }}
+                  dangerouslySetInnerHTML={{ __html: svgContent ?? "" }}
                 />
               );
             }

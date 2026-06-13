@@ -5,34 +5,95 @@ on: [push]
 
 # ジョブ定義
 jobs:
-  my_first_job:
-    name: My first job
-    # ジョブの実行環境
+  Typecheck:
+    name: Typecheck
     runs-on: ubuntu-latest
-    
-    # stepsで一連のタスクを定義
+
     steps:
-      # リポジトリチェックアウト
       - uses: actions/checkout@v5
 
-      # Nodeセットアップ
       - uses: actions/setup-node@v5
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
 
-      # 簡単なログ出力
-      - name: Say Hello
-        run: echo "Hello World!"
+      - name: Install dependencies
+        run: npm ci
 
-      # 簡単なJSコード実行
-      - name: Run simple JS
+      - name: Run typecheck
+        run: npm run typecheck
+
+  Lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint
+
+  Build:
+    name: Build
+    needs:
+      - Typecheck
+      - Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+
+  deploy:
+    name: Deploy
+    needs: Build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Pull Vercel Env
         run: |
-          node -e "console.log('JS is working')"
-
-      # 環境情報確認
-      - name: Show environment
+          vercel pull \
+            --yes \
+            --environment=production \
+            --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          
+      - name: Build with Vercel
         run: |
-          echo "Current directory:"
-          pwd
-          echo "Files:"
-          ls -la
+          vercel build \
+            --prod \
+            --token=${{ secrets.VERCEL_TOKEN }}
+          
+      - name: Deploy to Production
+        run: |
+          vercel deploy \
+            --prebuilt \
+            --prod \
+            --token=${{ secrets.VERCEL_TOKEN }}
