@@ -5,43 +5,8 @@ on: [push]
 
 # ジョブ定義
 jobs:
-  Test:
-    name: Test
-    # ジョブの実行環境
-    runs-on: ubuntu-latest
-    
-    # stepsで一連のタスクを定義
-    steps:
-      # リポジトリチェックアウト
-      - uses: actions/checkout@v5
-
-      # Nodeセットアップ
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: package-lock.json
-
-      # 簡単なログ出力
-      - name: Say Hello
-        run: echo "Hello World!"
-
-      # 簡単なJSコード実行
-      - name: Run simple JS
-        run: |
-          node -e "console.log('JS is working')"
-
-      # 環境情報確認
-      - name: Show environment
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "Files:"
-          ls -la
-
   Typecheck:
     name: Typecheck
-    needs: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -61,7 +26,6 @@ jobs:
 
   Lint:
     name: Lint
-    needs: Test
     runs-on: ubuntu-latest
 
     steps:
