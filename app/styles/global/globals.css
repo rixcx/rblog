@@ -61,7 +61,7 @@ body {
 
   .link-underline:hover span,
   .link-underline:hover + time {
-    @apply blur-[1px];
+    @apply blur-[1.5px];
   }
   
   /* deco */
@@ -108,13 +108,13 @@ body {
   /* left */
   .border-deco-x::before {
     @apply left-0 top-0 h-full w-0.5
-    bg-size-[2px_7px]
+    bg-size-[1.4px_7px] md:bg-size-[2px_7px]
     bg-repeat-y;
   }
   /* right */
   .border-deco-x::after {
     @apply right-0 top-0 h-full w-0.5
-    bg-size-[2px_7px]
+    bg-size-[1.4px_7px] md:bg-size-[2px_7px]
     bg-repeat-y;
   }
 
