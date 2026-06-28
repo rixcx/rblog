@@ -2,7 +2,7 @@
 
 @layer components {
   .markdown-body {
-    @apply text-[15px] md:text-[16px] leading-[24px] md:leading-[26px] tracking-[-0.01em];
+    @apply text-[15px] md:text-[16px] leading-[1.6] md:leading-[1.8] tracking-[0.2px];
   }
 
   .markdown-body p {
@@ -99,6 +99,7 @@
     position: absolute;
     top: 37px;
     left: 22px;
+    font-family: var(--font-ibm-plex-sans-jp);
     font-size: 4.75rem;
     font-weight: 600;
     font-style: normal;

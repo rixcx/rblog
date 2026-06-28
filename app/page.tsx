@@ -12,7 +12,7 @@ export default function Index() {
         <li key={article.slug}>
           <Link href={`/articles/${article.slug}`} className="inline-block">
             <div className="py-2.5 md:py-6 flex flex-col">
-              <h2 className="text-[22px] md:text-[28px] leading-6 md:leading-8 font-bold link-underline inline-block">
+              <h2 className="text-[22px] md:text-[28px] leading-7 md:leading-8 font-bold link-underline inline-block">
                 <span>
                   {article.title}
                 </span>
