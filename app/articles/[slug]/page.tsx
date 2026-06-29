@@ -17,7 +17,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <article>
       <div className="border-deco-x">
         <header className="border-deco-b">
-          <div className="py-5 md:py-10 px-3 md:px-6.5">
+          <div className="py-5 md:py-10 px-1 md:px-6.5">
             <h1 className="text-2xl md:text-4xl font-bold mb-0.75 md:mb-2">{article.title}</h1>
             <time className="inline-block font-playfair text-[0.8rem] md:text-[0.9rem] md:text-md transform scale-y-82">{formatDate(article.date)}</time>
           </div>
@@ -25,7 +25,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <span className="border-deco-joint-l"></span>
         </header>
 
-        <section className="pt-10 md:pt-15 px-3 md:px-6.5 pb-14">
+        <section className="pt-10 md:pt-15 px-1 md:px-6.5 pb-14">
           <div className="markdown-body">
             {article.content}
           </div>
