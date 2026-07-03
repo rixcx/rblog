@@ -66,13 +66,13 @@
   }
 
   .markdown-body h6 {
-    @apply text-[11px] md:text-[13px] text-[#aaa] bg-[#4e5154] px-3 py-0.5 mt-0.5 rounded-tr-lg rounded-tl-lg inline-block font-mono break-all max-w-[95%];
-  } 
+    @apply text-[11px] md:text-[13px] text-[#888] bg-[#3c4347] px-3 rounded-br-lg rounded-tl-lg inline-block font-mono break-all leading-[26px] md:leading-[30px];
+  }
   .markdown-body pre {
     @apply text-[13px] md:text-[14px] bg-[#3A3A3A] mb-4 px-0 py-4 md:py-5 rounded-lg overflow-x-auto text-sm font-mono;
   }
   .markdown-body h6 + figure pre {
-    @apply rounded-tl-none;
+    @apply pt-10 md:pt-12 pb-5 -mt-[26px] md:-mt-[30px] md:pt-10 md:pb-5;
   }
   .markdown-body pre code {
     @apply grid min-w-full;

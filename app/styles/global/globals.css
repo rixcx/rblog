@@ -9,7 +9,7 @@
 
 :root {
   --background: var(--color-primary-white);
-  --text-primary: var(--color-font-black)
+  --text-primary: var(--color-font-black);
 }
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -26,6 +26,11 @@ body {
     var(--font-ibm-plex-sans-jp),
     sans-serif;
     font-weight: 400;
+}
+
+body ::selection {
+  background-color: var(--color-primary-red);
+  color: var(--color-primary-white);
 }
 
 @layer components {

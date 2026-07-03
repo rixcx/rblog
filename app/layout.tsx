@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className="min-h-screen flex flex-col bg-[url(/images/global/bg_pattern.png)] bg-top bg-[length:150px] md:bg-[length:210px] overflow-x-hidden bg-primary-beige">
+    <html lang="ja" className="min-h-screen bg-[url(/images/global/bg_pattern.png)] bg-top bg-[length:150px] md:bg-[length:210px] overflow-x-hidden bg-primary-beige">
       <head>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <GoogleAnalytics />
