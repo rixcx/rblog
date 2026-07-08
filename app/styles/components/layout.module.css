@@ -1,0 +1,60 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: var(--layout-shell-width);
+  margin: 42px auto;
+  padding: 112px 60px 64px;
+  background: var(--color-primary-red);
+}
+
+.main {
+  position: relative;
+  min-height: 540px;
+  max-width: var(--layout-content-width);
+  margin-inline: auto;
+  padding: 120px 60px;
+  background: var(--color-primary-white);
+  border-radius: 16px;
+}
+
+.main::before,
+.main::after {
+  position: absolute;
+  z-index: 20;
+  display: block;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-50%);
+}
+
+.main::before {
+  top: 460px;
+  left: -72px;
+  width: 101px;
+  height: 101px;
+  background-image: url("/images/global/deco_flower.png");
+}
+
+.main::after {
+  top: 384px;
+  right: -51px;
+  width: 115px;
+  height: 211px;
+  background-image: url("/images/global/deco_star.png");
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    padding: 64px 10px 64px;
+  }
+
+  .main {
+    padding: 48px 16px;
+  }
+
+  .main::before,
+  .main::after {
+    display: none;
+  }
+}

@@ -1,0 +1,17 @@
+:root {
+  --color-primary-beige: #f6ebda;
+  --color-primary-red: #e74d4d;
+  --color-primary-white: #fbfbfb;
+  --color-font-black: #19262e;
+  --color-code-bg: #3a3a3a;
+  --color-code-inline-bg: #e9eaec;
+  --color-code-inline-text: #495155;
+  --color-border-muted: #dddddd;
+
+  --background: var(--color-primary-white);
+  --text-primary: var(--color-font-black);
+
+  --layout-shell-width: 1135px;
+  --layout-content-width: 920px;
+  --breakpoint-md: 768px;
+}
