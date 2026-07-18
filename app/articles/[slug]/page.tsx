@@ -1,6 +1,6 @@
 import { getArticleContent, getAllArticlesMeta } from "@/libs/remark";
 import { formatDate } from "@/utils/date";
-import styles from "@/app/styles/pages/article.module.css";
+import styles from "@/app/styles/pages/article.module.scss";
 
 export async function generateStaticParams() {
   const articles = getAllArticlesMeta();

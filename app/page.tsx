@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getAllArticlesMeta } from "@/libs/remark";
 import { formatDate } from "@/utils/date";
-import styles from "@/app/styles/pages/home.module.css";
+import styles from "@/app/styles/pages/home.module.scss";
 
 const articlesMeta = await getAllArticlesMeta();
 
