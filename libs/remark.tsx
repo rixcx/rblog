@@ -16,7 +16,7 @@ import remarkRehype from "remark-rehype";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeReact from "rehype-react";
 
-import * as MDX from "@/components/mdx/Typography";
+import * as MDX from "@/libs/Typography";
 
 /**
  * Types definitions for article metadata and article content

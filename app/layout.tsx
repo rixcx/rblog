@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans_JP, Playfair_Display, Ubuntu } from "next/font/google";
 import "@/app/styles/globals.scss";
-import styles from "@/app/styles/components/layout.module.scss";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import styles from "@/app/layout.module.scss";
+import Header from "@/app/components/Header/Header";
+import Footer from "@/app/components/Footer/Footer";
+import ScrollToTop from "@/app/components/ScrollToTop";
+import GoogleAnalytics from "@/app/components/GoogleAnalytics/GoogleAnalytics";
 
 export const ibmPlexSansJP = IBM_Plex_Sans_JP({
   variable: "--font-ibm-plex-sans-jp",

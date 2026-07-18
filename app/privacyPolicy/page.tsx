@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import styles from "@/app/styles/pages/privacy.module.scss";
+import styles from "@/app/privacyPolicy/privacyPolicy.module.scss";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | r.blog",

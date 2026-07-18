@@ -1,6 +1,7 @@
 import { getArticleContent, getAllArticlesMeta } from "@/libs/remark";
 import { formatDate } from "@/utils/date";
-import styles from "@/app/styles/pages/article.module.scss";
+import styles from "@/app/articles/[slug]/article.module.scss";
+import markdown from "@/app/articles/[slug]/markdown.module.scss";
 
 export async function generateStaticParams() {
   const articles = getAllArticlesMeta();
@@ -26,7 +27,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </header>
 
         <section className={styles.body}>
-          <div className="markdown-body">
+          <div className={markdown.md}>
             {article.content}
           </div>
         </section>

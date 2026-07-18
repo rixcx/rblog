@@ -1,4 +1,3 @@
-@import "./common/reset.css";
-@import "./common/theme.scss";
-@import "./common/base.scss";
-@import "./content/markdown.scss";
+@use "@/app/styles/common/reset.css";
+@use "@/app/styles/common/theme.scss";
+@use "@/app/styles/common/base.scss";
