@@ -23,7 +23,7 @@ body {
   font-family:
     var(--font-ubuntu),
     /* var(--font-noto-sans-jp), */
-    var(--font-ibm-plex-sans-jp),
+    /* var(--font-ibm-plex-sans-jp), */
     sans-serif;
     font-weight: 400;
 }

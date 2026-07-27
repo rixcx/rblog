@@ -101,7 +101,7 @@
     position: absolute;
     top: 37px;
     left: 22px;
-    font-family: var(--font-ibm-plex-sans-jp);
+    /* font-family: var(--font-ibm-plex-sans-jp); */
     font-size: 4.75rem;
     font-weight: 600;
     font-style: normal;
