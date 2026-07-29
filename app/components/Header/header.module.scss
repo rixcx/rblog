@@ -2,15 +2,22 @@
 @use "sass:map";
 
 .header {
-  max-width:map.get(common.$layout, "content-width");
+  position: relative;
+  max-width: map.get(common.$layout, "content-width");
   margin-inline: auto;
 }
 
 .inner {
   position: absolute;
-  top: 48px;
+  top: -64px;
+  left: 7px;
   z-index: 10;
   margin-left: 1px;
+
+  @include common.media(md) {
+    top: -38px;
+    // margin-left: 8px;
+  }
 }
 
 .title {
@@ -26,15 +33,8 @@
 .logo {
   width: 350px;
   height: auto;
-}
 
-@media (max-width: 767px) {
-  .inner {
-    top: 26px;
-    margin-left: 8px;
-  }
-
-  .logo {
+  @include common.media(md) {
     width: 220px;
   }
 }

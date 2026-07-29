@@ -18,12 +18,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <article>
       <div className={styles.frame}>
         <header className={styles.header}>
-          <div className={styles.headerInner}>
+          <div className={styles.header_inner}>
             <h1 className={styles.title}>{article.title}</h1>
             <time className={styles.date}>{formatDate(article.date)}</time>
           </div>
-          <span className={styles.jointRight}></span>
-          <span className={styles.jointLeft}></span>
+          <span className={styles.joint_right}></span>
+          <span className={styles.joint_left}></span>
         </header>
 
         <section className={styles.body}>

@@ -20,29 +20,29 @@
 .corner {
   position: relative;
   padding-left: 24px;
-}
 
-.corner::before,
-.corner::after {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  content: "";
-  background-color: map.get(common.$colors, "primary-red");
-  background-image: url("/images/global/bg_roundedcorner.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform: translateY(-50%);
-}
+  &::before,
+  &::after {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    content: "";
+    background-color: map.get(common.$colors, "primary-red");
+    background-image: url("/images/global/bg_roundedcorner.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translateY(-50%);
+  }
 
-.corner::before {
-  top: 50%;
-  left: -16px;
-}
+  &::before {
+    top: 50%;
+    left: -16px;
+  }
 
-.corner::after {
-  top: -50%;
-  right: 0;
+  &::after {
+    top: -50%;
+    right: 0;
+  }
 }
 
 .content {
@@ -67,17 +67,17 @@
   font-size: 0.75rem;
   font-variant-numeric: lining-nums;
   font-weight: 700;
-}
 
-.links::after {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 1px;
-  height: 50%;
-  content: "";
-  background: map.get(common.$colors, "primary-white");
-  transform: translateY(-50%);
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 1px;
+    height: 50%;
+    content: "";
+    background: map.get(common.$colors, "primary-white");
+    transform: translateY(-50%);
+  }
 }
 
 .copy {

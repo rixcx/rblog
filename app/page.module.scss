@@ -7,12 +7,23 @@
 
 .link {
   display: inline-block;
+
+  &:hover {
+    .title span,
+    .date {
+      filter: blur(1.8px);
+    }
+  }
 }
 
 .item {
   display: flex;
   flex-direction: column;
   padding-block: 24px;
+
+  @include common.media(md) {
+    padding-block: 10px;
+  }
 }
 
 .title {
@@ -21,29 +32,29 @@
   font-size: 28px;
   font-weight: 700;
   line-height: 1.14;
-}
 
-.title::after {
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  content: "";
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 300ms ease;
+  @include common.media(md) {
+    font-size: 22px;
+    line-height: 1.27;
+  }
+
+  &::after {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    content: "";
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
 }
 
 .title span,
 .date {
-  transition: filter 300ms ease;
-}
-
-.link:hover .title span,
-.link:hover .date {
-  filter: blur(1.5px);
+  transition: filter 0.3s ease;
 }
 
 .date {
@@ -54,19 +65,8 @@
   font-weight: 700;
   transform: scaleY(0.82);
   transform-origin: left center;
-}
 
-@media (max-width: 767px) {
-  .item {
-    padding-block: 10px;
-  }
-
-  .title {
-    font-size: 22px;
-    line-height: 1.27;
-  }
-
-  .date {
+  @include common.media(md) {
     font-size: 0.8rem;
   }
 }

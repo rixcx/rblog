@@ -1,4 +1,5 @@
 @use "@/app/styles/common/_variables" as common;
+@use "@/app/styles/common/_mixin" as mixin;
 @use "sass:map";
 
 html {
@@ -8,6 +9,10 @@ html {
   background-image: url("/images/global/bg_pattern.png");
   background-position: top;
   background-size: 210px;
+  
+  @include mixin.media(md) {
+    background-size: 150px;
+  }
 }
 
 body {
@@ -35,10 +40,4 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
-}
-
-@media (max-width: 767px) {
-html {
-    background-size: 150px;
-  }
 }
