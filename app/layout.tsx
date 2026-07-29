@@ -11,7 +11,7 @@ import GoogleAnalytics from "@/app/components/GoogleAnalytics/GoogleAnalytics";
 export const ibmPlexSansJP = IBM_Plex_Sans_JP({
   variable: "--font-ibm-plex-sans-jp",
   weight: ["400","500", "700"],
-  preload: false,
+  subsets: ["latin"],
 });
 
 // export const notoSansJP = Noto_Sans_JP({
