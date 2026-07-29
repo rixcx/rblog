@@ -1,19 +1,22 @@
+@use "@/app/styles/common" as common;
+@use "sass:map";
+
 .wrap {
   position: relative;
   width: 100%;
-  max-width: var(--layout-shell-width);
+  max-width: map.get(common.$layout, "shell-width");
   margin: 42px auto;
   padding: 112px 60px 64px;
-  background: var(--color-primary-red);
+  background: map.get(common.$colors, "primary-red");
 }
 
 .main {
   position: relative;
   min-height: 540px;
-  max-width: var(--layout-content-width);
+  max-width: map.get(common.$layout, "content-width");
   margin-inline: auto;
   padding: 120px 60px;
-  background: var(--color-primary-white);
+  background: map.get(common.$colors, "primary-white");
   border-radius: 16px;
 }
 

@@ -1,5 +1,8 @@
+@use "@/app/styles/common" as common;
+@use "sass:map";
+
 .header {
-  max-width: var(--layout-content-width);
+  max-width:map.get(common.$layout, "content-width");
   margin-inline: auto;
 }
 

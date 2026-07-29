@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans_JP, Playfair_Display, Ubuntu } from "next/font/google";
+import "@/app/styles/common/reset.css";
 import "@/app/styles/globals.scss";
 import styles from "@/app/layout.module.scss";
 import Header from "@/app/components/Header/Header";

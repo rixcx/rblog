@@ -1,3 +1,6 @@
+@use "@/app/styles/common" as common;
+@use "sass:map";
+
 .container {
   font-size: 15px;
   line-height: 25px;
@@ -24,7 +27,7 @@
 
 .link {
   margin-inline: 4px;
-  color: var(--color-primary-red);
+  color: map.get(common.$colors, "primary-red");
   text-decoration: underline;
   text-underline-offset: 4px;
   transition: opacity 200ms ease;

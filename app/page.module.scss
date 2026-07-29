@@ -1,3 +1,6 @@
+@use "@/app/styles/common" as common;
+@use "sass:map";
+
 .list {
   display: grid;
 }
@@ -45,7 +48,7 @@
 
 .date {
   display: inline-block;
-  font-family: var(--font-playfair-display);
+  font-family: map.get(common.$fonts, "playfair-display");
   font-size: 0.9rem;
   font-variant-numeric: lining-nums;
   font-weight: 700;
