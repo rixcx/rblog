@@ -231,7 +231,7 @@ C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods
 起動時のコンソールに`[SMAPI] - TestMod`があればOK！
 
 
-いろいろボタンを押してみて、動作すれば成功です
+いろいろボタンを押してみて、動作すれば成功です🚶‍♀️
 ![](/images/articles/26-07-27_C-mod-learn/03_result.gif?w=750)
 
 

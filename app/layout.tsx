@@ -8,25 +8,25 @@ import Footer from "@/app/components/Footer/Footer";
 import ScrollToTop from "@/app/components/ScrollToTop";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics/GoogleAnalytics";
 
-export const ibmPlexSansJP = IBM_Plex_Sans_JP({
+const ibmPlexSansJP = IBM_Plex_Sans_JP({
   variable: "--font-ibm-plex-sans-jp",
   weight: ["400","500", "700"],
   subsets: ["latin"],
 });
 
-// export const notoSansJP = Noto_Sans_JP({
+// const notoSansJP = Noto_Sans_JP({
 //   variable: "--font-noto-sans-jp",
 //   weight: ["400","500", "700"],
 //   preload: false,
 // });
 
-export const ubuntu = Ubuntu({
+const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
   subsets: ["latin"],
   weight: ["400", "700"],
 });
 
-export const playfairDisplay = Playfair_Display({
+const playfairDisplay = Playfair_Display({
   variable: "--font-playfair-display",
   subsets: ["latin"],
 });
