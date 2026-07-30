@@ -1,8 +1,8 @@
 @use "sass:map";
-@use "variables" as common;
+@use "variables" as variables;
 
 @mixin media($size) {
-  @media (max-width: map.get(common.$breakpoints, $size)) {
+  @media (max-width: map.get(variables.$breakpoints, $size)) {
     @content;
   }
 }
