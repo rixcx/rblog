@@ -1,0 +1,43 @@
+@use "@/app/styles/common/_variables" as variables;
+@use "@/app/styles/common/_mixin" as mixin;
+@use "sass:map";
+
+html {
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: map.get(variables.$colors, "primary-beige");
+  background-image: url("/images/global/bg_pattern.png");
+  background-position: top;
+  background-size: 210px;
+  
+  @include mixin.media(md) {
+    background-size: 150px;
+  }
+}
+
+body {
+  min-height: 100%;
+  color: map.get(variables.$colors, "font-black");
+  font-family:
+    map.get(variables.$fonts, "ubuntu"),
+    map.get(variables.$fonts, "ibm-plex-sans-jp"),
+    sans-serif;
+  font-weight: 400;
+}
+
+::selection {
+  background-color: map.get(variables.$colors, "primary-red");
+  color: map.get(variables.$colors, "primary-white");
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

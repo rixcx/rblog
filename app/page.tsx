@@ -1,23 +1,24 @@
 import Link from "next/link";
 import { getAllArticlesMeta } from "@/libs/remark";
 import { formatDate } from "@/utils/date";
+import styles from "@/app/page.module.scss";
 
 const articlesMeta = await getAllArticlesMeta();
 
 export default function Index() {
   return (
     <>
-      <ul>
+      <ul className={styles.list}>
       {articlesMeta.map((article) => (
         <li key={article.slug}>
-          <Link href={`/articles/${article.slug}`} className="inline-block">
-            <div className="py-2.5 md:py-6 flex flex-col">
-              <h2 className="text-[22px] md:text-[28px] leading-7 md:leading-8 font-bold link-underline inline-block">
+          <Link href={`/articles/${article.slug}`} className={styles.link}>
+            <div className={styles.item}>
+              <h2 className={styles.title}>
                 <span>
                   {article.title}
                 </span>
               </h2>
-              <time className="inline-block font-playfair text-[0.8rem] md:text-[0.9rem] transform scale-y-82">{formatDate(article.date)}</time>
+              <time className={styles.date}>{formatDate(article.date)}</time>
             </div>
           </Link>
         </li>

@@ -1,0 +1,27 @@
+$colors: (
+  primary-beige: #f6ebda,
+  primary-red: #e74d4d,
+  primary-white: #fbfbfb,
+  font-black: #19262e,
+  code-bg: #3a3a3a,
+  code-inline-bg: #e9eaec,
+  code-inline-text: #495155,
+  border-muted: #dddddd,
+);
+
+$fonts: (
+  ubuntu: "Ubuntu",
+  ibm-plex-sans-jp: "IBM Plex Sans JP",
+  playfair-display: "Playfair Display",
+  code: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;"
+);
+
+$layout: (
+  shell-width: 1135px,
+  content-width: 920px,
+);
+
+$breakpoints: (
+  md: 768px,
+);
+

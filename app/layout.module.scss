@@ -1,0 +1,60 @@
+@use "@/app/styles/common" as common;
+@use "sass:map";
+
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: map.get(common.$layout, "shell-width");
+  margin: 42px auto;
+  padding: 112px 60px 64px;
+  background: map.get(common.$colors, "primary-red");
+
+  @include common.media(md) {
+    padding: 64px 10px 64px;
+  }
+}
+
+.main {
+  position: relative;
+  min-height: 540px;
+  max-width: map.get(common.$layout, "content-width");
+  margin-inline: auto;
+  padding: 100px 60px;
+  background: map.get(common.$colors, "primary-white");
+  border-radius: 16px;
+
+  @include common.media(md) {
+    padding: 48px 16px;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    z-index: 20;
+    display: block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translateY(-50%);
+
+    @include common.media(md) {
+      display: none;
+    }
+  }
+
+  &::before {
+    top: 460px;
+    left: -72px;
+    width: 101px;
+    height: 101px;
+    background-image: url("/images/global/deco_flower.png");
+  }
+
+  &::after {
+    top: 384px;
+    right: -51px;
+    width: 115px;
+    height: 211px;
+    background-image: url("/images/global/deco_star.png");
+  }
+}

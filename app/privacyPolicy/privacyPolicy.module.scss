@@ -1,0 +1,52 @@
+@use "@/app/styles/common" as common;
+@use "sass:map";
+
+.container {
+  font-size: 15px;
+  line-height: 25px;
+  letter-spacing: -0.01em;
+
+  @include common.media(md) {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+.title {
+  margin-bottom: 32px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.25;
+
+  @include common.media(md) {
+    margin-bottom: 16px;
+    font-size: 24px;
+  }
+}
+
+.sectionTitle {
+  margin-bottom: 0.4em;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.35;
+
+  @include common.media(md) {
+    font-size: 18px;
+  }
+}
+
+.paragraph {
+  margin-bottom: 16px;
+}
+
+.link {
+  margin-inline: 4px;
+  color: map.get(common.$colors, "primary-red");
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 200ms ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

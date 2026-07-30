@@ -1,0 +1,40 @@
+@use "@/app/styles/common" as common;
+@use "sass:map";
+
+.header {
+  position: relative;
+  max-width: map.get(common.$layout, "content-width");
+  margin-inline: auto;
+}
+
+.inner {
+  position: absolute;
+  top: -64px;
+  left: 7px;
+  z-index: 10;
+  margin-left: 1px;
+
+  @include common.media(md) {
+    top: -38px;
+    // margin-left: 8px;
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.link {
+  display: block;
+}
+
+.logo {
+  width: 350px;
+  height: auto;
+
+  @include common.media(md) {
+    width: 220px;
+  }
+}
