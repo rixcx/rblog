@@ -263,6 +263,10 @@
     text-align: left;
     background: #f2f2f2;
     border: 1px solid map.get(common.$colors, "border-muted");
+
+    @include common.media(md) {
+      padding: 8px 14px;
+    }
   }
 
   td {
@@ -270,6 +274,10 @@
     text-align: left;
     vertical-align: top;
     border: 1px solid map.get(common.$colors, "border-muted");
+
+    @include common.media(md) {
+      padding: 8px 14px;
+    }
   }
 
   hr {
