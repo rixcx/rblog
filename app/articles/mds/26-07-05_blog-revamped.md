@@ -35,6 +35,8 @@ graph TD
 
 ただ、実際実装してみると、HTMLが全然スッキリしない・カスタムデザインの場合を作りたい場合は結局cssファイルを作る・そもそも調整が面倒すぎる、となかなか扱いづらかったので、近いうちに変更予定です。慣れる気がしない…
 
+> 追記: CSS Modulesに変更しました
+
 ## アップデートその4
 CI/CDを導入してみました。
 ホスティングにVerselを使っているのでNext.jsなら自動で連携はしてくれるのですが、勉強も兼ねてあえて自動連携ではなく手動連携にしています。
@@ -49,5 +51,5 @@ microCMSから以前の記事を取得し、本文をMarkdownに変換して.md 
 フォントも変えたけど、うぶんつフォントかわいくて戻ってきた
 | ubuntu | IBM Plex Sans JP |
 |------|-----|
-| ![](/images/articles/26-07-05_blog-revamped/01_ubuntu.png?w=700&h=278) | ![](/images/articles/26-07-05_blog-revamped/02_ibm.png?w=700&h=278) |
+| ![](/images/articles/26-07-05_blog-revamped/01_ubuntu.png?w=0) | ![](/images/articles/26-07-05_blog-revamped/02_ibm.png?w=0) |
 

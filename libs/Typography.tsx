@@ -128,13 +128,14 @@ export function Img({
 }: {
   src?: string;
 }) {
-  const width = Number(src.match(/[?&]w=(\d+)/)?.[1]) || 748;
+  const matchedWidth = src.match(/[?&]w=(\d+)/)?.[1];
+  const width = matchedWidth ? Number(matchedWidth) : null;
 
   return (
     <span
       style={{
         display: "inline-block",
-        width: `${width}px`,
+        width: width ? `${width}px` : "100%",
         maxWidth: "100%",
       }}
     >

@@ -31,23 +31,23 @@ Select Auth Method
 # なにかお願いしてみる
 
 ちょうど作業していたプロジェクトで、ローカル環境を開くときにdockerの起動とViteのサーバーの起動の2度手間になっている部分があるので、改善してもらおうと思います。  
-![](/images/articles/25-07-03_use-geminiCLI/01_gemini.png?w=700&h=278)
+![](/images/articles/25-07-03_use-geminiCLI/01_gemini.png?w=700)
   
 するとディレクトリの中を解析し、色々提案をしてくれます。  
-![](/images/articles/25-07-03_use-geminiCLI/02_gemini.png?w=700&h=515)  
+![](/images/articles/25-07-03_use-geminiCLI/02_gemini.png?w=700)  
 複数のnpmスクリプトを並行して実行するためのパッケージconcurrently を使うことを提案されました。  
   
-![](/images/articles/25-07-03_use-geminiCLI/03_gemini.png?w=700&h=606)  
+![](/images/articles/25-07-03_use-geminiCLI/03_gemini.png?w=700)  
 ルートディレクトリに package.json を作成するやconcurrently をインストールする、package.jsonに書き込む、など、ファイルに変更を求めるという場面では認証を求められます。  
 設定ができたようなので提案されたコマンドを打ってみると、確かにどちらも1コマンドでローカル環境が立ち上がりました。  
   
 ディレクトリを確認すると、node\_modulesファイルの変更がとんでもなく上がってきていたので.gitignoreに書くよう依頼します。  
-![](/images/articles/25-07-03_use-geminiCLI/04_gemini.png?w=700&h=493)  
+![](/images/articles/25-07-03_use-geminiCLI/04_gemini.png?w=700)  
   
 # コミットもお願いしてみる
 
 作業の途中で他に変更したファイルもいくつかあったので、プロンプトにはその指示もいれました。  
-![](/images/articles/25-07-03_use-geminiCLI/05_gemini.png?w=700&h=505)  
+![](/images/articles/25-07-03_use-geminiCLI/05_gemini.png?w=700)  
 見事にコミットしてくれました🐱  
   
 # 終わりに
