@@ -123,15 +123,29 @@ export function Hr() {
   return <hr />;
 }
 
-import Image from "next/image";
-export function Img({ src = "", alt = "", }: { src?: string; alt?: string; }) {
+export function Img({
+  src = "",
+}: {
+  src?: string;
+}) {
+  const width = Number(src.match(/[?&]w=(\d+)/)?.[1]) || 748;
+
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={800}
-      height={0}
-      style={{ width: "100%", height: "auto" }}
-    />
+    <span
+      style={{
+        display: "inline-block",
+        width: `${width}px`,
+        maxWidth: "100%",
+      }}
+    >
+      <img
+        src={src}
+        style={{
+          display: "block",
+          width: "100%",
+          height: "auto",
+        }}
+      />
+    </span>
   );
 }
